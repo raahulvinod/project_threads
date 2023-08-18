@@ -1,3 +1,8 @@
+'use server';
+
+import { revalidatePath } from 'next/cache';
+import Thread from '../models/thread.model';
+import User from '../models/user.model';
 import { connectToDb } from '../mongoose';
 
 interface Params {
@@ -13,7 +18,22 @@ export async function createThread({
   communityId,
   path,
 }: Params) {
-  connectToDb();
+  try {
+    connectToDb();
 
-  const createdThread = await Thread.create();
+    const createdThread = await Thread.create({
+      text,
+      author,
+      community: null,
+    });
+
+    //Update user model
+    await User.findByIdAndUpdate(author, {
+      $push: { threads: createdThread._id },
+    });
+
+    revalidatePath(path);
+  } catch (error: any) {
+    throw new Error(`Error creating thread: ${error.message}`);
+  }
 }
