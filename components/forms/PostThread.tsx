@@ -42,7 +42,9 @@ function PostThread({ userId }: { userId: string }) {
     },
   });
 
-  const onSubmit = () => {};
+  const onSubmit = () => {
+    // await createThread()
+  };
   return (
     <Form {...form}>
       <form
