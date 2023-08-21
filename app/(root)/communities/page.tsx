@@ -4,8 +4,9 @@ import { redirect } from 'next/navigation';
 
 import { fetchCommunities } from '@/lib/actions/community.actions';
 import CommunityCard from '@/components/cards/CommunityCard';
-import Searchbar from '@/components/shared/SearchBar';
+
 import Pagination from '@/components/shared/Pagination';
+import SearchBar from '@/components/shared/SearchBar';
 
 const page = async ({
   searchParams,
@@ -34,7 +35,7 @@ const page = async ({
 
         {/* Searh Bar */}
         <div className="mt-5">
-          <Searchbar routeType="communities" />
+          <SearchBar routeType="communities" />
         </div>
 
         <div className="mt-14 flex flex-col gap-9">
