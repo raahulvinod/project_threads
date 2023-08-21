@@ -33,7 +33,7 @@ const page = async ({
 
         {/* Searh Bar */}
         <div className="mt-5">
-          <Searchbars routeType="search" />
+          <Searchbars routeType="communities" />
         </div>
 
         <div className="mt-14 flex flex-col gap-9">
